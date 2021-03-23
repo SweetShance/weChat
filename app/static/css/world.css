@@ -1,0 +1,31 @@
+.content{
+    height: 500px; 
+    padding: 10px; 
+    border: 1px solid #d4d4d4; 
+    box-shadow: 0px 1px 5px #888888; 
+    overflow-y: auto;
+}
+.content img{
+    width: 40px;
+    border-radius: 20px;
+}
+.other-content .user-content{
+    display: inline-block; 
+    background-color: #fff; 
+    border: 1px solid #d4d4d4;
+    padding: 5px; 
+    border-radius: 5px; 
+    box-shadow:  2px 1px 10px #888888;
+}
+.oneslef-content .user-content{
+    float: right; 
+    display: inline-block; 
+    background-color: #fff; 
+    border: 1px solid #d4d4d4; 
+    padding: 5px; 
+    border-radius: 5px; 
+    box-shadow:  2px 1px 10px #888888;
+}
+.user-name{
+    font-size: 12px;
+}

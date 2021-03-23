@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="static/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/index.css">
+    
+</head>
+<body>
+
+    <div class="row" style="width: 100%; margin-right: 0px; margin-left: 0px;">
+        <div class="col-md-8 col-md-offset-2" style="padding-right: 5px !important;padding-left: 5px !important;" >
+            <div>
+                <!-- Nav tabs -->
+                <div style="padding-left: 10px ; padding-right: 10px;">
+                    <ul class="nav nav-tabs" role="tablist">                    
+                        <li id="world" role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">世界</a></li>
+                        <li id="rooms" role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">房间列表</a></li>
+                        <li id="my-room" role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">我的房间</a></li>
+                        <li id="rooms" role="presentation" style="float: right;">
+                            <a class="dropdown" href="javascript:;">
+                                <span id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  <span ><img class="user-head-img" src="{% if context %} static/img/head-img.png {% endif %}" style="width: 20px; border-radius: 10px;" alt=""></span><span class="user_name">
+                                      {% if context %}
+                                        {{ context.username }}
+                                      {% else %}
+                                        暂未登录    
+                                      {% endif %}
+                                  </span>
+                                  <span class="caret"></span>
+                                </span>
+                                <ul class="dropdown-menu" aria-labelledby="dLabel" style="padding-left: 10px;">
+                                    <li class="login li-a" style="padding-top: 10px;" data-toggle="modal" data-target=".bs-example-modal-sm-login"><span> 登录</span></li>
+                                    <li class="creat_room li-a" style="padding-top: 10px;" data-toggle="modal" data-target=".bs-example-modal-sm-create"><span class="creat_room" >创建房间</span> </li>
+                                    <li class="logout li-a" style="padding-top: 10px;"><span class="logout">登出</span></li>
+                                    <li class="register li-a" style="padding-top: 10px;"  data-toggle="modal" data-target=".bs-example-modal-sm-register"> <span> 注册</span> </li>
+                                </ul>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Tab panes -->
+                <div class="tab-content" >
+                </div>
+              
+              </div>
+        </div>
+    </div>
+    <!-- 登录 -->
+    <div class="modal fade bs-example-modal-sm-login" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content" style="padding: 10px;">
+                <form action="{{ url_for('login') }}" method="POST">
+                    <div class="form-group">
+                    <label for="exampleInputEmail1">用户名</label>
+                    <input type="text" name="username" class="form-control username-login"  placeholder="用户名">
+                    </div>
+                    <div class="form-group">
+                    <label for="exampleInputPassword1">密码</label>
+                    <input type="password" name="password" class="form-control password-login" placeholder="密码">
+                    </div>
+                    <div class="footer">
+                        <button type="submit" class="btn btn-default login-submit">提交</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- 注册 -->
+    <div class="modal fade bs-example-modal-sm-register" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content" style="padding: 10px;">
+                <form action="{{ url_for('register') }}" method="POST">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">用户名</label>
+                      <input type="text" name="username" class="form-control username-register"  placeholder="用户名">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">密码</label>
+                      <input type="password" name="password" class="form-control password-register" placeholder="密码">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">邮箱</label>
+                        <input type="email" name="email" class="form-control email" id="exampleInputEmail1" placeholder="邮箱">
+                    </div>
+                    <div class="footer">
+                        <button type="submit" class="btn btn-default register-submit">提交</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- 创建房间 -->
+    <div class="modal fade bs-example-modal-sm-create" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content" style="padding: 10px;">
+                <form action="{{ url_for('create_room') }}" method="POST">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">房间名</label>
+                      <input type="text" name="room_name" class="form-control room_name"  placeholder="房间名">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">房间编号</label>
+                      <input type="text" name="room_number" class="form-control room_number" placeholder="房间编号">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">房间简介</label>
+                        <textarea name="room_describe"  cols="30" rows="10" class="form-control room_describe"  placeholder="房间简介"></textarea>
+                    </div>
+                    <div class="footer">
+                        <button type="submit" class="btn btn-default create-room-submit">提交</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="/static/js/jquery-3.5.1.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/socket.io.js"></script>
+    <script src="/static/js/urlPath.js"></script>
+    <script src="/static/js/utils.js"></script>
+    <script src="/static/js/index.js"></script>
+    
+    <script>
+        // $(".tab-content").load("static/templates/world.html")
+        $(document).ready(function(){
+            get_world()
+        })
+
+        // 
+        $("#rooms").click(function(){
+            get_rooms()
+        })
+
+        $("#world").click(function(){
+            get_world()
+        })
+
+        $("#my-room").click(function(){
+            get_my_room()
+        })
+        // 退出
+        $(".logout").click(function(){
+            window.location.href = urlPath + "/logout"
+        })
+
+        function get_world(){
+            $(".tab-content").load("static/templates/world.html")
+        }
+
+        function get_rooms(){
+            $(".tab-content").load("static/templates/rooms.html")
+        }
+
+        function get_my_room(){
+            $(".tab-content").load("static/templates/my-room.html")
+        }
+    </script>
+</body>
+</html>
