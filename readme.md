@@ -1,3 +1,10 @@
+通过socket通讯实现了一个简单的大厅聊天和开房间聊天
+flask_socketio 文档
+https://flask-socketio.readthedocs.io/en/latest/
+
+socketio 文档
+https://socketio.bootcss.com/#examples
+
 环境： flask + flask_socketio + mysql 
 
 运行： 
